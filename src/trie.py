@@ -37,7 +37,7 @@ class Trie(dict):
         try:
             for char in string:
                 temp = temp[char]
-            return '$' in temp.keys()
+            return '$' in temp
         except KeyError:
             return False
 
@@ -59,7 +59,7 @@ class Trie(dict):
             closest_fork = temp
             node_to_remove = string[0]
             for char in string:
-                if len(temp.keys()) > 1:
+                if len(temp) > 1:
                     closest_fork = temp
                     node_to_remove = char
                 temp = temp[char]
@@ -69,3 +69,38 @@ class Trie(dict):
                     return
         except KeyError:
             raise KeyError("Value not in trie.")
+
+    def word_traverse(self, string, node=None):
+        """Return the words with depth transversal."""
+        if not node:
+            node = self
+            try:
+                for char in string:
+                    node = node[char]
+            except KeyError:
+                raise KeyError('Value not in trie.')
+        for char in node:
+            if char == '$':
+                yield string
+            else:
+                for val in self.word_traverse(string + char, node[char]):
+                    yield val
+
+    def traverse(self, string, node=None):
+        """Return the chars with depth transversal."""
+        if not node:
+            node = self
+            try:
+                for char in string:
+                    node = node[char]
+            except KeyError:
+                raise KeyError("Value not in trie.")
+            node = self
+            for char in string:
+                node = node[char]
+                yield char
+        for char in node:
+            if char is not '$':
+                yield char
+                for val in self.traverse(None, node[char]):
+                    yield val

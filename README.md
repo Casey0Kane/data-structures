@@ -45,8 +45,8 @@ error if there is no values in the pqueue.
 - del_node(val): deletes the node containing ‘val’ from the graph; raises an error if no such node exists
 - del_edge(val1, val2): deletes the edge connecting ‘val1’ and ‘val2’ from the graph; raises an error if no such edge exists
 - has_node(val): True if node containing ‘val’ is contained in the graph, False if not.
-- neighbors(val): returns the list of all nodes connected to the node containing ‘val’ by edges; raises an error if val is not in g
-- adjacent(val1, val2): returns True if there is an edge connecting val1 and val2, False if not; raises an error if either of the supplied values are not in g
+- neighbors(val): returns the list of all nodes connected to the node containing ‘val’ by edges; raises an error if val is not in graph.
+- adjacent(val1, val2): returns True if there is an edge connecting val1 and val2, False if not; raises an error if either of the supplied values are not in graph.
 - depth_first_traversal(start_val): Perform a full depth-first traversal of the graph beginning at start_val. Return the full visited path when traversal is complete.
 - breadth_first_traversal(start_val): Perform a full breadth-first traversal of the graph, beginning at start_val. Return the full visited path when traversal is complete.
 
@@ -86,31 +86,32 @@ Transversals on the BST [Wikipedia](https://en.wikipedia.org/wiki/Tree_traversal
 - _hash(key) - should hash the key provided (note that this is an internal api)
 
 ## Trie
-- insert(self, string): will insert the input string into the trie. If character in the input string is already present, it will be ignored.
-- contains(self, string): will return True if the string is in the trie, False if not.
-- size(self): will return the total number of words contained within the trie. 0 if empty.
-- remove(self, string): will remove the given string from the trie. If the word doesn’t exist, will raise an appropriate exception.
-
+- insert(string): will insert the input string into the trie. If character in the input string is already present, it will be ignored. Big(O) - O(1)
+- contains(string): will return True if the string is in the trie, False if not. Big(O) - O(1)
+- size(): will return the total number of words contained within the trie. 0 if empty. Big(O) - O(1)
+- remove(string): will remove the given string from the trie. If the word doesn’t exist, will raise an appropriate exception. Big(O) - O(1)
+- word_traverse(start_string): depth-first traversal returning all of the words in the trie tree that start with start_string. Returns a generator. Big(O) - O(1)
+- treverse(start_string): depth-first traversal returning all of the characters in the trie tree that start with start_string. Returns a generator. Big(O) - O(1)
 
 # To install
-- clone repo with ssh or https
+### Clone repo with ssh or https
 
-ssh:
+- ssh:
 ```git clone git@github.com:Casey0Kane/data-structures.git```
 
-https:
+- https:
 ```git clone https://github.com/Casey0Kane/data-structures.git```
 - change into data-structures direrctoy
 ```cd data-structures```
 
-- install dependencies and/or those for testing
-without testing:
+### Install dependencies and/or those for testing
 
+- without testing:
 ```pip install -e .```
-or with:
-
+- or with:
 ```pip install -e .[testing]```
-## Runing tests
+
+### Runing tests
 - single file where test_bbst.py is the file to run tests on.
 ```pytest src/test_bbst.py -v```
 - all files with coverage report

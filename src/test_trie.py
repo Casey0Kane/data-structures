@@ -203,6 +203,59 @@ def test_remove_branch_from_root_of_trie(simple):
     assert 'd' not in simple
 
 
+def test_word_traverse_two_suffixes(simple):
+    """Test simple depth first."""
+    assert tuple(simple.word_traverse('a')) in (
+        ('ab', 'abc'),
+        ('abc', 'ab')
+    )
+
+
+def test_word_traverse_two_suffixes_comlete_word(simple):
+    """Test simple depth first."""
+    assert tuple(simple.word_traverse('ab')) in (
+        ('ab', 'abc'),
+        ('abc', 'ab')
+    )
+
+
+def test_word_traverse_one_suffix(simple):
+    """Test simple depth first."""
+    assert next(simple.word_traverse('d')) == 'def'
+
+
+def test_word_traverse_value_not_in_trie(simple):
+    """Test value not in trie."""
+    with pytest.raises(KeyError):
+        next(simple.word_traverse('test'))
+
+
+def test_traverse_on_short_trie_0_0(simple):
+    """Test should return chars."""
+    assert tuple(simple.traverse('a')) == ('a', 'b', 'c')
+
+
+def test_traverse_on_short_trie_0_1(simple):
+    """Test should return chars."""
+    assert tuple(simple.traverse('d')) == ('d', 'e', 'f')
+
+
+def test_traverse_on_short_trie_0_3(simple):
+    """Test should return charss."""
+    assert tuple(simple.traverse('de')) == ('d', 'e', 'f')
+
+
+def test_traverse_on_short_trie_0_4(simple):
+    """Test should return charss."""
+    assert tuple(simple.traverse('ab')) == ('a', 'b', 'c')
+
+
+def test_traverse_on_short_value_not_in_trie(simple):
+    """Test should return charss."""
+    with pytest.raises(KeyError):
+        next(simple.traverse('xyzzy'))
+
+
 # ========== Short Test Fixture ============== @
 
 def populate_short_words():
@@ -236,6 +289,13 @@ def test_short_trie_handles_remove(short):
     assert '$' not in short['a'].keys()
     with pytest.raises(KeyError):
         short.remove('a')
+
+
+def test_word_traverse_on_short_trie_empty_strng(short):
+    """Test should return entire set of words."""
+    results = tuple(short.word_traverse(''))
+    for word in SHORT_WORDS:
+        assert word in results
 
 
 # ===================== Large Test ===================== #
@@ -293,3 +353,42 @@ def test_remove_random_words(large):
         assert large.size() == length
         with pytest.raises(KeyError):
             large.remove(word)
+
+
+def test_word_traverse_on_large_trie(large):
+    """Test on large trie."""
+    a_letter_words = [
+        word for word in WORDS if word[0] == 'a'
+    ]
+    results = tuple(large.word_traverse('a'))
+    for word in results:
+        assert word in a_letter_words
+    for word in a_letter_words:
+        assert word in results
+
+
+def test_word_traverse_on_large_trie_0_1(large):
+    """Test on large tire."""
+    a_letter_words = [
+        word for word in WORDS if len(word) > 1 and
+        word[0] == 'd' and word[1] == 'e'
+    ]
+    results = tuple(large.word_traverse('de'))
+    for word in results:
+        assert word in a_letter_words
+    for word in a_letter_words:
+        assert word in results
+    for word in results:
+        large.remove(word)
+    assert large.size() == len(WORDS) - len(results)
+    for word in results:
+        with pytest.raises(KeyError):
+            large.remove(word)
+
+
+def test_traverse_on_large_trie_0_0(large):
+    """Test should return charss."""
+    assert tuple(large.traverse('aard')) in (
+        ('a', 'a', 'r', 'd', 'v', 'a', 'r', 'k', 'w', 'o', 'l', 'f'),
+        ('a', 'a', 'r', 'd', 'w', 'o', 'l', 'f', 'v', 'a', 'r', 'k')
+    )
