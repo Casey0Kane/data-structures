@@ -93,28 +93,35 @@ Transversals on the BST [Wikipedia](https://en.wikipedia.org/wiki/Tree_traversal
 - word_traverse(start_string): depth-first traversal returning all of the words in the trie tree that start with start_string. Returns a generator. Big(O) - O(1)
 - treverse(start_string): depth-first traversal returning all of the characters in the trie tree that start with start_string. Returns a generator. Big(O) - O(1)
 
+
+# Sorting Examples
+
+## Bubble
+
+Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted. [Wikipedia](https://en.wikipedia.org/wiki/Bubble_sort)
+
+- bubble_sort(numbers_list) returns sorted list.
+- Timit used in if __name__ == "__main__": block comparing runtimes.
+- to run it:````python src/bubble.py```
+
 # To install
 ### Clone repo with ssh or https
 
-- ssh:
-```git clone git@github.com:Casey0Kane/data-structures.git```
+- ssh: ```git clone git@github.com:Casey0Kane/data-structures.git```
 
-- https:
-```git clone https://github.com/Casey0Kane/data-structures.git```
-- change into data-structures direrctoy
-```cd data-structures```
+- https: ```git clone https://github.com/Casey0Kane/data-structures.git```
+
+- change into data-structures direrctoy ```cd data-structures```
 
 ### Install dependencies and/or those for testing
 
-- without testing:
-```pip install -e .```
-- or with:
-```pip install -e .[testing]```
+- without testing: ```pip install -e .```
+
+- or with: ```pip install -e .[testing]```
 
 ### Runing tests
-- single file where test_bbst.py is the file to run tests on.
-```pytest src/test_bbst.py -v```
-- all files with coverage report
-```py.test -v src/ --cov=src/ --cov-report term-missing```
-- to test both python 2.7 and 3.6 simply run:
-```tox```
+- single file where test_bbst.py is the file to run tests on. ```pytest src/test_bbst.py -v```
+
+- all files with coverage report ```py.test -v src/ --cov=src/ --cov-report term-missing```
+
+- to test both python 2.7 and 3.6 simply run: ```tox```
