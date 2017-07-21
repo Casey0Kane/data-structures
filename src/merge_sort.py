@@ -3,8 +3,6 @@
 
 def merge(left, right):
     """Combine lists in correct order."""
-    if not left or not right:
-        return left or right
     results = []
     i, j = 0, 0
     while len(results) < len(left) + len(right):
@@ -40,7 +38,11 @@ if __name__ == '__main__':  # pragma: no cover
         "from __main__ import merge_sort; from random import randint"
     )
     print("""
-Merge sort is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Merge sort is a divide and conquer algorithm.
+Merge sort is an efficient, general-purpose,
+comparison-based sorting algorithm. Most implementations
+produce a stable sort, which means that the implementation
+preserves the input order of equal elements in the sorted output.
+Merge sort is a divide and conquer algorithm.
 """)
     print("#================= best case search 10000x ==============#")
     print(best.timeit(number=1000))

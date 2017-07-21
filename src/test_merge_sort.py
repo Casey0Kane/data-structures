@@ -49,14 +49,14 @@ def test_merge_sort_perfectly_backwards_list(sorted_list):
 
 
 def test_merge_sorted_perfectly_forward_list(sorted_list):
-    """Tests best case."""
+    """Test best case."""
     result = merge_sort(sorted_list[::-1])
     sorted_list.sort()
     assert result == sorted_list
 
 
 def test_merge_sorted_multiple_duplicates(short_list):
-    """Tests best case."""
+    """Test best case."""
     result = merge_sort(short_list[::-1] + short_list)
     short_list += short_list
     short_list.sort()
@@ -74,3 +74,8 @@ def test_odd_list():
     """Making sure the merge sort works with an odd list."""
     numbers = [17, 11, 14, 99, 20]
     assert merge_sort(numbers) == sorted(numbers)
+
+
+def test_single_item_in_list():
+    """When there is only one value, what will it do."""
+    assert merge_sort([1]) == [1]
