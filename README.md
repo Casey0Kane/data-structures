@@ -1,4 +1,4 @@
-# Data Structures [![Build Status](https://travis-ci.org/Casey0Kane/data-structures.svg?branch=master)](https://travis-ci.org/Casey0Kane/data-structures)
+# Data Structures -# Data Structures [![Build Status](https://travis-ci.org/W-Ely/Data-Structures-Fork.svg?branch=master)](https://travis-ci.org/W-Ely/Data-Structures-Fork) [![Coverage Status](https://coveralls.io/repos/github/W-Ely/data-structures/badge.svg?branch=master)](https://coveralls.io/github/W-Ely/data-structures?branch=master)
 This will hold sample code for a number of classic data structures implemented in Python.
 
 ## Linked List
@@ -108,6 +108,13 @@ Merge sort is an efficient, general-purpose, comparison-based sorting algorithm.
 - Timit used in if __name__ == "__main__": block comparing runtimes.
 - to run it:```python src/merge_sort.py```
 
+## Quick Sort
+Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.
+[Wikipedia](https://en.wikipedia.org/wiki/Quicksort)
+- quick_sort(numbers) returns sorted list.
+- Timit used in if __name__ == "__main__": block comparing runtimes.
+- to run it:```python src/quick_sort.py```
+=======
 # Sorting Examples
 
 ## Bubble
