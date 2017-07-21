@@ -13,6 +13,7 @@ def quick_sort(numbers):
             right.append(num)
     return quick_sort(left) + [numbers[0]] + quick_sort(right)
 
+
 if __name__ == '__main__':  # pragma: no cover
     from timeit import Timer
     best = Timer(
