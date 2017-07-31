@@ -5,7 +5,7 @@ class Node(object):
     """Node data structure."""
 
     def __init__(self, value=None, next_node=None):
-        """Initalizes a node."""
+        """Initalize a node."""
         self.value = value
         self.next_node = next_node
 
@@ -14,15 +14,14 @@ class LinkedList(object):
     """Linked list data Structure."""
 
     def __init__(self, iterable=None):
-        """Initalizes a linked list"""
+        """Initalize a linked list."""
         self.head = None
         self.length = 0
-        if iterable is not None:
-            if type(iterable) in [list, tuple, str]:
-                for val in iterable:
-                    self.push(val)
-            else:
-                raise TypeError(iterable, 'is not iterable')
+        try:
+            for element in iterable:
+                self.push(element)
+        except TypeError:
+            self.head = iterable
 
     def push(self, val):
         """Add item to linked list."""
@@ -32,13 +31,12 @@ class LinkedList(object):
 
     def pop(self):
         """Remove item from head and return value."""
-        try:
-            val = self.head.value
-            self.head = self.head.next_node
-            self.length -= 1
-            return val
-        except AttributeError:
-            raise ValueError('Can not pop from empty list')
+        if self.head is None:
+            raise IndexError("Cannot pop from an empty linked list.")
+        first = self.head.value
+        self.head = self.head.next_node
+        self.length -= 1
+        return first
 
     def size(self):
         """Return length."""
@@ -79,9 +77,9 @@ class LinkedList(object):
         return string
 
     def __len__(self):
-        """Returns the length"""
+        """Return the length."""
         return self.size()
 
     def __repr__(self):
-        """Prints it out"""
+        """Print it out."""
         return self.display()
