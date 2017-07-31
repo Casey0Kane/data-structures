@@ -11,12 +11,6 @@ def test_linked_list_init():
     assert test_linked_list.head.next_node.next_node.value == 1
 
 
-def test_linked_list_raises_error():
-    """Raise TypeError when initalized with number."""
-    with pytest.raises(TypeError):
-        LinkedList(5)
-
-
 def test_push():
     """Push adds to linked list."""
     test_linked_list = LinkedList()
@@ -36,8 +30,18 @@ def test_pop_resets_head_to_preveous_value():
 def test_pop_0_1():
     """Pop raises error on empy list."""
     test_linked_list = LinkedList()
-    with pytest.raises(ValueError):
+    with pytest.raises(IndexError):
         test_linked_list.pop()
+
+
+def test_pop_0_2():
+    """Pop returns correct value."""
+    test_linked_list = LinkedList()
+    test_linked_list.push(11)
+    test_linked_list.push(14)
+    test_linked_list.push(20)
+    assert test_linked_list.pop() == 20
+    assert test_linked_list.head.value == 14
 
 
 def test_size_is_correct_through_multiple_pushes():

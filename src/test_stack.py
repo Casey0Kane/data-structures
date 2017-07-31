@@ -6,7 +6,6 @@ from stack import Stack
 @pytest.fixture
 def stack():
     """Create a stack fixture."""
-    from stack import Stack
     stack = Stack()
     return stack
 
@@ -14,7 +13,6 @@ def stack():
 @pytest.fixture
 def stack_of_five_pancakes(stack):
     """Create a stack with five items."""
-    from stack import Stack
     stack = Stack(
         ['plate'] + ['pancake' for pancake in range(3)] + ['strawberry syrup'])
     return stack
@@ -33,12 +31,6 @@ def test_stack_init_five(stack_of_five_pancakes):
     assert a_few_pancakes.next_node.next_node.value == 'plate'
 
 
-def test_stack_init_raises_typeerror():
-    """Can't initialize with value."""
-    with pytest.raises(TypeError):
-        Stack(5)
-
-
 def test_push_five_pancakes(stack_of_five_pancakes):
     """Add 1 to stack of 5 nodes to stack."""
     stack_of_five_pancakes.push("sprinkles")
@@ -55,7 +47,7 @@ def test_pop_five_pancakes(stack_of_five_pancakes):
 
 def test_pop_from_empty_stack(stack):
     """Pop raises error on empy list."""
-    with pytest.raises(ValueError):
+    with pytest.raises(IndexError):
         stack.pop()
 
 
