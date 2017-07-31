@@ -60,6 +60,17 @@ def test_heap_rand_100_placed_in_order(binheap_100_rand):
             assert num < binheap_100_rand[index * 2 + 2]
 
 
+def test_heap_rand_100_remove_retains_correct_order(binheap_100_rand):
+    """Random 100 in order."""
+    binheap_100_rand.pop()
+    binheap_100_rand.pop()
+    for index, num in enumerate(binheap_100_rand):
+        if index * 2 + 1 <= len(binheap_100_rand) - 1:
+            assert num < binheap_100_rand[index * 2 + 1]
+        if index * 2 + 2 <= len(binheap_100_rand) - 1:
+            assert num < binheap_100_rand[index * 2 + 2]
+
+
 def test_heap_rand_100_removes_in_order(binheap_100_rand):
     """Remove in order."""
     temp_a = binheap_100_rand.pop()
