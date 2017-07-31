@@ -5,7 +5,8 @@ class Binheap(list):
     """Create binary heap."""
 
     def __init__(self,  iterable=None):
-        """Initalize with or without iterable."""
+        """Init with or without iterable."""
+        self._pop = super().pop
         if not iterable:
             pass
         elif iterable and self.check_iterable(iterable):
@@ -15,18 +16,18 @@ class Binheap(list):
             raise TypeError('Must be iterable and all numbers.')
 
     def push(self, val):
-        """."""
+        """Add item to heap."""
         if val not in self:
-            list.append(self, val)
+            self.append(val)
             self.bubble_up(len(self) - 1)
 
     def pop(self):
-        """."""
+        """Remove top item from heap."""
         if len(self) > 0:
             temp = self[0]
             self[0], self[-1] = self[-1], temp
-            temp = list.pop(self, -1)
-            self.bubbule_down()
+            temp = self._pop()
+            self.bubble_down()
             return temp
         return None
 
@@ -40,7 +41,7 @@ class Binheap(list):
             if i < 1:
                 break
 
-    def bubbule_down(self):
+    def bubble_down(self):
         """."""
         i = 0
         while i * 2 + 1 <= len(self) - 1:
@@ -61,7 +62,7 @@ class Binheap(list):
                 return i * 2 + 2
 
     def check_iterable(self, iterable):
-        """."""
+        """Check if inital value is iterable or a number."""
         allnumeric = True
         for item in iterable:
             if type(item) not in [int, float]:
