@@ -9,7 +9,7 @@ class HashTable(object):
         self._table = [[] for x in range(size)]
         if not func:
             func = naive
-        self._hash = func
+        self._hash = func  # <-------This is the _hash method.
 
     def get(self, key):
         """Return the value stored at hash of given key."""
