@@ -94,3 +94,24 @@ def test_initalizing_with_non_iterable_or_not_numbers_raises_ValueError():
     from binheap import Binheap
     with pytest.raises(TypeError):
         Binheap("dfsdfadgasdg")
+
+
+def test_pop_removes_smallest_from_front_every_time(binheap_100_rand):
+    """Pop removes from front every time."""
+    for _ in range(len(binheap_100_rand)):
+        smallest = min(binheap_100_rand)
+        assert binheap_100_rand[0] == smallest
+        assert binheap_100_rand.pop() == smallest
+
+
+def test_push_always_retains_correct_order(binheap_empty):
+    """Test random additions always leave a working binheap."""
+    from random import randint
+    for _ in range(1000):
+        num = randint(1, 500000)
+        binheap_empty.push(num)
+        for index, num in enumerate(binheap_empty):
+            if index * 2 + 1 <= len(binheap_empty) - 1:
+                assert num < binheap_empty[index * 2 + 1]
+            if index * 2 + 2 <= len(binheap_empty) - 1:
+                assert num < binheap_empty[index * 2 + 2]
