@@ -408,6 +408,7 @@ def right_left_most_has_right_child():
                      6
                       \
                        7
+    Depth: 6
     """
     from bst import Bst
     return Bst([1, 5, 3, 10, 8, 6, 20, 7])
@@ -676,3 +677,58 @@ def test_del_handles_multiple_place_changes(robust):
     )
     assert robust.balance() == 0
     assert robust.depth() == 5
+
+
+# ========= depth test, just becasue =========== #
+
+
+def test_robust_depth(robust):
+    """Robust depth is 7."""
+    assert robust.depth() == 7
+
+
+def test_right_left_most_has_right_child(right_left_most_has_right_child):
+    """Depth of right_left_most_has_right_child is 6."""
+    assert right_left_most_has_right_child.depth() == 6
+
+
+def test_comp(comp):
+    """Depth of comp is 4."""
+    assert comp.depth() == 4
+
+
+def test_three(three):
+    """Depth of three is 2."""
+    assert three.depth() == 2
+
+
+def test_bst_wiki(bst_wiki):
+    """Depth of bst_wiki is 4."""
+    assert bst_wiki.depth() == 4
+
+
+def test_bst_right_balance(bst_right_balance):
+    """Depth of bst_right_balance is 4."""
+    assert bst_right_balance.depth() == 4
+
+
+def test_bst_balanced(bst_balanced):
+    """Depth of bst_balanced is 3."""
+    assert bst_balanced.depth() == 3
+
+
+def test_bst_left_balance(bst_left_balance):
+    """Depth of bst_left_balance is 5."""
+    assert bst_left_balance.depth() == 5
+
+
+def test_bst_empty(bst_empty):
+    """Depth of bst_empty is 0."""
+    assert bst_empty.depth() == 0
+
+
+def test_bst_long_and_left():
+    """Long left bst."""
+    from bst import Bst
+    bst = Bst([x for x in range(1, 100)])
+    assert bst.depth() == 99
